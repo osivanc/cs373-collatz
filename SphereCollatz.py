@@ -1,14 +1,4 @@
-#!/usr/bin/env python
-
-# ---------------------------
-# projects/collatz/Collatz.py
-# Copyright (C) 2011
-# Glenn P. Downing
-# ---------------------------
-
-# ------------
-# collatz_read
-# ------------
+import sys
 
 def collatz_read (r, a) :
     """
@@ -33,9 +23,9 @@ def collatz_read (r, a) :
 
 def collatz_eval (n, p) :
     """
-    n is the beginning of the range, inclusive
-    p is the end       of the range, inclusive
-    return the max cycle length in the range [n, p]
+    i is the beginning of the range, inclusive
+    j is the end       of the range, inclusive
+    return the max cycle length in the range [i, j]
     """
     assert n > 0
     assert p > 0
@@ -64,13 +54,23 @@ def collatz_eval (n, p) :
             length_list[origin-1] = count
         count = 1
     return max(length_list)
+
+#   if (i > j):
+#        k = i
+#        i = j
+#        j = k
+#    values = [0] *(j+1)
+#    while (i <= j):
+#        values[i] = collatz_cycle_length(i)
+#        i += 1
+#    v = max(values)
 #
     assert v > 0
     return v
 
-# --------------------
+# -------------
 # collatz_cycle_length
-# --------------------
+# -------------
 
 def collatz_cycle_length (n) :
     assert n > 0
@@ -112,3 +112,5 @@ def collatz_solve (r, w) :
     while collatz_read(r, a) :
         v = collatz_eval(a[0], a[1])
         collatz_print(w, a[0], a[1], v)
+
+collatz_solve(sys.stdin, sys.stdout)
